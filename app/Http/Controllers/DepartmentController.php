@@ -14,7 +14,7 @@ class DepartmentController extends Controller
 		$employeecount = [];
 		foreach ($departmentdata as $key => $value) {
 			$id = $value->id;
-			$employee = Employee::where('department', $id)->get();
+			$employee = Employee::where([['department', $id],['status', 'active' ]])->get();
 			$countemployee = count($employee);
 			$employeecount[] = $countemployee;
 		}

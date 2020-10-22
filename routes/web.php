@@ -22,7 +22,7 @@ Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['middleware' => ['auth','admin']], function (){
+Route::group(['middleware' => ['auth','admin','status']], function (){
 	
 	Route::get('/dashboard','HomeController@admin')->name('admin');
 
@@ -41,6 +41,8 @@ Route::group(['middleware' => ['auth','admin']], function (){
 	/**********************employee**********/
 		Route::resource('/Employee', 'EmployeeController');
 		Route::post('/Employee/designation','EmployeeController@getdesignation')->name('getdesignation');
+
+		Route::resource('/User', 'UserController');
 		
 
 	
@@ -48,7 +50,7 @@ Route::group(['middleware' => ['auth','admin']], function (){
 
 });
 
-Route::group(['prefix'=>'employee','middleware'=>['auth']],
+Route::group(['prefix'=>'employee','middleware'=>['auth','status']],
 	function(){
 		Route::get('/','HomeController@employee')->name('employee');
 		

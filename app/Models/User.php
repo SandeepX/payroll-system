@@ -17,10 +17,19 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'name', 'email', 'password','status','role','avatar',
     ];
+
+    public function getRules(){
+        return [
+            'name' => 'required|string',
+            'email' => 'required|email|max:255|unique:users',
+            'password'=>'required|string|min:8',
+            'status'=>'required|in:active,inactive',
+            'role'=>'required|in:admin,employee',
+            'avatar'=>'sometimes|mimes:jpeg,png,svg|max:5000',
+        ];
+    }
 
     /**
      * The attributes that should be hidden for arrays.

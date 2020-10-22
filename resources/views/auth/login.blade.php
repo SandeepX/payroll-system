@@ -2,8 +2,16 @@
 
 @section('content')
 <div class="container">
+       
     <div class="row justify-content-center">
         <div class="col-md-8">
+
+            <div class="row">
+                <div class="col-12">
+                    @include('admin.section.notify')
+                </div>
+            </div>
+
             <div class="card">
                 <div class="card-header">{{ __('Staff Login') }}</div>
 
@@ -71,4 +79,12 @@
         </div>
     </div>
 </div>
+
+<script>
+    setTimeout(function(){
+      $('.alert').slideUp();
+    } , 3000);
+</script>
+
 @endsection
+

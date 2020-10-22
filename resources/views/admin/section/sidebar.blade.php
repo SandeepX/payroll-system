@@ -79,7 +79,8 @@
               <ul class="nav nav-treeview">
                 <li class="nav-item has-treeview has-treeview menu-open">
                   <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-copy"></i>
+                    <i class="fas fa-tachometer-alt"></i>
+                    
                     <p>
                      {{(auth()->user()->role =='admin')?'Admin Management':'Employee management'}} 
                       <i class="fas fa-angle-left right"></i>
@@ -90,17 +91,30 @@
                   <ul class="nav nav-treeview">
                     <li class="nav-item">
                       <a href="{{('/Employee')}}" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
+                        <i class="fas fa-users nav-icon"></i>
+                        
                         <p>Employee</p>
                       </a>
                     </li>
 
                     <li class="nav-item">
                       <a href="{{route('department')}}" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
+                        <i class="fas fa-building nav-icon"></i>
+                        
                         <p>Department</p>
                       </a>
                     </li>
+
+                    <li class="nav-item">
+                      <a href="{{('/User')}}" class="nav-link">
+                         <i class="fas fa-users-cog nav-icon"></i>
+                        
+                        <p>Users</p>
+                      </a>
+                    </li>
+
+
+                   
                     
                     <li class="nav-item">
                       <a href="" class="nav-link">
@@ -116,12 +130,7 @@
                       </a>
                     </li>
                     
-                    <li class="nav-item">
-                      <a href="" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Users</p>
-                      </a>
-                    </li>
+                    
                     
                      <li class="nav-item">
                       <a href="" class="nav-link">
@@ -143,6 +152,19 @@
                         <i class="far fa-circle nav-icon"></i>
                         <p>Activity log</p>
                       </a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                                   <i class="fa fa-sign-out nav-icon"></i>{{ __('Logout') }} 
+                              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                              </form>
+                      </a>
+
+
+                      
                     </li>
                  </ul> 
                 @endif 

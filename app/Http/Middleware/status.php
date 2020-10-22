@@ -3,11 +3,11 @@
 namespace App\Http\Middleware;
 
 use Closure;
-
 use Illuminate\Http\Request;
+use Auth;
 use App\Models\User;
 
-class admin
+class status
 {
     /**
      * Handle an incoming request.
@@ -18,12 +18,14 @@ class admin
      */
     public function handle(Request $request, Closure $next)
     {
-        if($request->user()->role =='admin')  {
-            return $next($request);
-        }else{
-            
-            return redirect()->route($request->user()->role);
-
+       
+        $response = $next($request);
+        //If the status is not approved redirect to login 
+        if(Auth::check() && Auth::user()->status != 'active'){
+            Auth::logout();
+            return redirect('/login')->with('error', 'User Not Activated');
         }
+        return $response;
+    
     }
 }
