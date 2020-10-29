@@ -236,8 +236,9 @@ class EmployeeController extends Controller
         
         if (!$this->employee) {
             $request->session()->flash('error','Employee detail not found'); 
-        return redirect()->route('Employee.index');
-    }   
+            return redirect()->route('Employee.index');
+        }
+           
         $rules = $this->employee->getRules();
         $request->validate($rules);
 

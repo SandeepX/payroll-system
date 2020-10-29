@@ -99,8 +99,11 @@ class UserController extends Controller
     {
         $userdata = User::find($id);
 
+        // dd($userdata['password']);
+
+
         if($userdata){
-            return view('admin.Users.Adduser')
+            return view('admin.Users.edituser')
             ->with('userdata',$userdata);   
             
 
@@ -117,8 +120,72 @@ class UserController extends Controller
     
     public function update(Request $request, $id)
     {
-       $user = User::find($id); 
-        dd($user);
+        $Updateuser = User::find($id);
+
+        if (!$Updateuser) {
+            $request->session()->flash('error','user detail not found'); 
+            return redirect()->route('User.index');
+        }
+
+        //dd($request->all());
+
+        $rules = $this->user->getRules();
+        $request->validate($rules);
+
+        $Updatedata = $request->all();
+
+
+        
+        
+      
+
+        if($request->avatar){
+            $upload_dir = public_path().'/uploads/userAvatar' ;
+            if(!File::exists($upload_dir)){
+                File::makeDirectory($upload_dir,0777,true,true);
+            }
+            $file_name = "User-".date('Ymdhis').rand(0,999).".".$request->avatar->getClientOriginalExtension();
+            $success = $request->avatar->move($upload_dir, $file_name);
+            if($success){
+                
+                $Updatedata['avatar'] = $file_name; 
+                @unlink($upload_dir.'/'.$Updateuser->avatar);
+                
+                    
+            } else{
+               $Updatedata['avatar'] = null;
+            }
+
+        }
+
+
+            $Updateuser->name = $request->name;
+            $Updateuser->email = $request->email;
+            $Updateuser->status = $request->status;
+            $Updateuser->role = $request->role;
+            
+            
+            if($request->avatar){
+                $Updateuser->avatar = $Updatedata['avatar'];
+            }else{
+                $Updatedata['avatar'] ='';
+            }
+
+
+
+
+
+        
+        $status = $Updateuser->save();
+        if($status){
+            $request->session()->flash('success','User Detail updated successfully');
+        }else{
+             $request->session()->flash('error','User Detail not updated ');
+
+        }
+        return redirect()->route('User.index'); 
+        
+
         
     }
 

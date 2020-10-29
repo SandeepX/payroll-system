@@ -23,8 +23,8 @@ class User extends Authenticatable
     public function getRules(){
         return [
             'name' => 'required|string',
-            'email' => 'required|email|max:255|unique:users',
-            'password'=>'required|string|min:8',
+            'email' => 'required|email|max:255',
+            'password'=>'string|min:8',
             'status'=>'required|in:active,inactive',
             'role'=>'required|in:admin,employee',
             'avatar'=>'sometimes|mimes:jpeg,png,svg|max:5000',
