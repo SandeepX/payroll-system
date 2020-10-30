@@ -106,22 +106,31 @@
                     </li>
 
                     <li class="nav-item">
-                      <a href="{{('/User')}}" class="nav-link">
-                         <i class="fas fa-users-cog nav-icon"></i>
-                        
-                        <p>Users</p>
-                      </a>
-                    </li>
-
-
-                   
-                    
-                    <li class="nav-item">
-                      <a href="" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
+                      <a href="{{('/Attendence')}}" class="nav-link">
+                        <i class="fa fa-columns nav-icon"></i>
                         <p>Attendence</p>
                       </a>
                     </li>
+
+
+
+
+
+                    <li class="nav-item">
+                      <a href="{{('/User')}}" class="nav-link">
+                         <i class="fas fa-users-cog nav-icon"></i>
+                          <p>Users</p>
+                      </a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a href="{{('/holiday')}}" class="nav-link">
+                        <i class="fa fa-plane nav-icon"></i>
+                        <p>Holiday</p>
+                      </a>
+                    </li>
+                  
+
                     
                     <li class="nav-item">
                       <a href="" class="nav-link">
@@ -130,12 +139,10 @@
                       </a>
                     </li>
                     
-                    
-                    
-                     <li class="nav-item">
+                    <li class="nav-item">
                       <a href="" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>Holidays</p>
+                        <p>Daily</p>
                       </a>
                     </li>
 

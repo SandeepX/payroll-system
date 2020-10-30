@@ -20,7 +20,7 @@ class EmployeeController extends Controller
     public function index()
     {
      
-       $EmployeeDetail = Employee::paginate(10);
+       $EmployeeDetail = Employee::all();
        //dd($EmployeeDetail);
        return view('admin.AdminEmployee.Employee')
        ->with('EmployeeDetail',$EmployeeDetail);

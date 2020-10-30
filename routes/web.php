@@ -2,16 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,6 +17,7 @@ Route::group(['middleware' => ['auth','admin','status']], function (){
 	
 	Route::get('/dashboard','HomeController@admin')->name('admin');
 
+	
 	/****************department************/
 
 	Route::prefix('/department')->group(function () {
@@ -42,7 +34,18 @@ Route::group(['middleware' => ['auth','admin','status']], function (){
 		Route::resource('/Employee', 'EmployeeController');
 		Route::post('/Employee/designation','EmployeeController@getdesignation')->name('getdesignation');
 
+	/******************User Route****************/
+
 		Route::resource('/User', 'UserController');
+
+	/**************Attendence Route**************/
+
+		Route::resource('/Attendence','AttendenceController');
+		Route::post('/Attendence/Employeelist','AttendenceController@getEmployee')->name('getEmployee');
+		Route::post('/Attendence/Employeelist/store','AttendenceController@store')->name('storeEmployee');
+
+	/**************holidays Route**************/
+		Route::resource('/holiday' ,'HolidayController');
 		
 
 	
