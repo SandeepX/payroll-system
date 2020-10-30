@@ -46,7 +46,10 @@ Route::group(['middleware' => ['auth','admin','status']], function (){
 
 	/**************holidays Route**************/
 		Route::resource('/holiday' ,'HolidayController');
-		
+	
+	/**************Daily Route**************/
+		Route::resource('/notice', 'NoticeController');
+		Route::resource('/quote','QuoteController');
 
 	
 

@@ -113,7 +113,12 @@
                     </li>
 
 
-
+                    <li class="nav-item">
+                      <a href="{{('/holiday')}}" class="nav-link">
+                        <i class="fa fa-plane nav-icon"></i>
+                        <p>Holiday</p>
+                      </a>
+                    </li>
 
 
                     <li class="nav-item">
@@ -123,15 +128,50 @@
                       </a>
                     </li>
 
-                    <li class="nav-item">
-                      <a href="{{('/holiday')}}" class="nav-link">
-                        <i class="fa fa-plane nav-icon"></i>
-                        <p>Holiday</p>
-                      </a>
-                    </li>
-                  
-
                     
+                    
+
+                    <li class="nav-item has-treeview">
+                      <a href="#" class="nav-link">
+                        <i class="nav-icon fa fa-archive"></i>
+                        <p>
+                          Daily
+                          <i class="fas fa-angle-left right"></i>
+                        </p>
+                      </a>
+
+                      <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                          <a href="{{route('notice.create')}}" class="nav-link">
+                            <i class=" nav-icon"></i>
+                              <p>Add Notice</p>
+                          </a>
+                        </li>
+
+                        <li class="nav-item">
+                          <a href="{{route('notice.index')}}" class="nav-link">
+                            <i class=" nav-icon"></i>
+                              <p>Manage Notice</p>
+                          </a>
+                        </li>
+
+                        <li class="nav-item">
+                          <a href="{{route('quote.create')}}" class="nav-link">
+                            <i class=" nav-icon"></i>
+                              <p>Add Quotes</p>
+                          </a>
+                        </li>
+
+                        <li class="nav-item">
+                          <a href="{{route('quote.index')}}" class="nav-link">
+                            <i class=" nav-icon"></i>
+                              <p>Manage Quotes</p>
+                          </a>
+                        </li>
+                        
+                      </ul>
+                    
+
                     <li class="nav-item">
                       <a href="" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
@@ -139,12 +179,7 @@
                       </a>
                     </li>
                     
-                    <li class="nav-item">
-                      <a href="" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Daily</p>
-                      </a>
-                    </li>
+                    
 
                     <li class="nav-item">
                       <a href="" class="nav-link">
