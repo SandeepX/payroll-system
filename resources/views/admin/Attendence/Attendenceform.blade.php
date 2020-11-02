@@ -41,7 +41,7 @@
 							<div class="form-row" style="padding-top: 10px;">
 								<div class="col-4">
 									<label>Employee Name:</label>
-									<input type="text" class="form-control" placeholder="Employeename" name="Employeedetail['Employeename'][]" value="{{ $value->name }}">
+									<input type="text" class="form-control" placeholder="Employeename" name="Employeedetail[Employeename]" value="{{ $value->name }}">
 								</div>
 
 								
@@ -49,17 +49,17 @@
 
 								<div class="col">
 									<label>In time:</label>
-									<input type="time" class="form-control" placeholder="Intime" value="" name="Employeedetail['intime'][]">
+									<input type="time" class="form-control" placeholder="Intime" value="" name="Employeedetail[intime]">
 								</div>
 
 								<div class="col">
 									<label>Out Time:</label>
-									<input type="time" name="Employeedetail['outtime'][]" value="" class="form-control" placeholder="outtime">
+									<input type="time" name="Employeedetail[outtime]" value="" class="form-control" placeholder="outtime">
 								</div>
 
 								<div class="col-3">
 									<label>Status:</label>
-									<select name="Employeedetail['status'][]" class="form-control">
+									<select name="Employeedetail[status]" class="form-control">
 										<option value="">Select status</option>
 										<option value="absent">Absent</option>
 										<option value="present">present</option>

@@ -11,9 +11,7 @@
         <a href="{{url('/dashboard')}}" class="nav-link">Home</a>
       </li>
 
-
-      
-    </ul>
+     </ul>
 
    
     <!-- Right navbar links -->
@@ -61,7 +59,7 @@
 
       @if(auth()->user()->role=='admin')
         <div class="info">
-          <a href="#" class="d-block">Welcome,<br> Adminastrator</br></a>
+          <a href="{{url('/dashboard')}}" class="d-block">Welcome,<br> Adminastrator</br></a>
         </div>
       @else
         <div class="info">
@@ -121,16 +119,6 @@
                     </li>
 
 
-                    <li class="nav-item">
-                      <a href="{{('/User')}}" class="nav-link">
-                         <i class="fas fa-users-cog nav-icon"></i>
-                          <p>Users</p>
-                      </a>
-                    </li>
-
-                    
-                    
-
                     <li class="nav-item has-treeview">
                       <a href="#" class="nav-link">
                         <i class="nav-icon fa fa-archive"></i>
@@ -170,13 +158,56 @@
                         </li>
                         
                       </ul>
-                    
+                    </li>
+
 
                     <li class="nav-item">
-                      <a href="" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Leave</p>
+                      <a href="{{('/User')}}" class="nav-link">
+                         <i class="fas fa-users-cog nav-icon"></i>
+                          <p>Users</p>
                       </a>
+                    </li>
+
+                    
+                    <li class="nav-item has-treeview">
+                      <a href="#" class="nav-link">
+                        <i class="nav-icon fa fa-bed"></i>
+                        <p>
+                          Leave
+                          <i class="fas fa-angle-left right"></i>
+                        </p>
+                      </a>
+
+                      <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                          <a href="" class="nav-link">
+                            <i class=" nav-icon"></i>
+                              <p>Add Leave</p>
+                          </a>
+                        </li>
+
+                        <li class="nav-item">
+                          <a href="" class="nav-link">
+                            <i class=" nav-icon"></i>
+                              <p>Manage Leave</p>
+                          </a>
+                        </li>
+
+                        <li class="nav-item">
+                          <a href="{{route('leave.create')}}" class="nav-link">
+                            <i class=" nav-icon"></i>
+                              <p>Add Leave Type</p>
+                          </a>
+                        </li>
+
+                        <li class="nav-item">
+                          <a href="{{route('leave.index')}}" class="nav-link">
+                            <i class=" nav-icon"></i>
+                              <p>Manage Leave Type</p>
+                          </a>
+                        </li>
+                        
+                      </ul>
                     </li>
                     
                     
@@ -190,8 +221,8 @@
                     
 
                     <li class="nav-item">
-                      <a href="" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
+                      <a href="{{'/logActivity'}}" class="nav-link">
+                        <i class="fa fa-bicycle nav-icon"></i>
                         <p>Activity log</p>
                       </a>
                     </li>

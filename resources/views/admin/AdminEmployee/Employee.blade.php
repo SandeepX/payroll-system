@@ -69,6 +69,8 @@
                 @endif
                    
                 </table>
+                
+                <hr>
                 {{ $EmployeeDetail->links() }}
                 <hr>
                 <div class="ibox-head" style="padding-top: 10px;">

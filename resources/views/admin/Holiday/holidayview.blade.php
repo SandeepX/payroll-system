@@ -64,6 +64,9 @@
                    
                 </table>
                 <hr>
+                {{ $holidaydata->links()}}
+                <hr>
+
                 <div class="ibox-head" style="padding-top: 10px;">
 
                     <a href="{{route('holiday.create')}}" class="btn  btn-dark add_btn">

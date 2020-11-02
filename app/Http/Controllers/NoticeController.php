@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Notice;
 use Illuminate\Http\Request;
+use App\Models\LogActivity;
 
 class NoticeController extends Controller
 {
@@ -18,7 +19,8 @@ class NoticeController extends Controller
      */
     public function index()
     {
-        $data = Notice::all();
+        
+        $data = Notice::paginate(10);
         return view('admin.Daily.managenotice')
         ->with('data',$data);
     }
@@ -30,6 +32,7 @@ class NoticeController extends Controller
      */
     public function create()
     {
+        
         return view('admin.Daily.Addnotice');
     }
 
@@ -52,8 +55,11 @@ class NoticeController extends Controller
         $status = $this->notice->save();
         if($status){
             $request->session()->flash('success','notice added successfully');
+            \LogActivity::addToLog('notice created.');
         }else{
              $request->session()->flash('error','notice not added ');
+            \LogActivity::addToLog('Tried tp  create notice.');
+
 
         }
         return redirect()->route('notice.index');
@@ -78,12 +84,13 @@ class NoticeController extends Controller
      */
     public function edit($id)
     {
-         $editdata = Notice::find($id);
+        $editdata = Notice::find($id);
         
         if(!$editdata){
             request()->session()->flash('error', 'notice with this id not found.');
             return redirect()->route('notice.index');
         }
+        
         return view('admin.Daily.Editnotice')->
         with('editdata',$editdata);
     }
@@ -113,8 +120,11 @@ class NoticeController extends Controller
         $status = $this->notice->save();
         if($status){
             $request->session()->flash('success','Notice updated successfully');
+            \LogActivity::addToLog('notice updated.');
         }else{
              $request->session()->flash('error','Notice not updated ');
+            \LogActivity::addToLog('Tried to update Notice.');
+
 
         }
         return redirect()->route('notice.index');
@@ -138,8 +148,11 @@ class NoticeController extends Controller
         $success = $notice->delete($id);
         if($success){
             request()->session()->flash('success','notice deleted successfully.');
+            \LogActivity::addToLog('notice deleted.');
         }else{
              request()->session()->flash('error',' sorry !notice not deleted.');
+            \LogActivity::addToLog('Tried to delete notice.');
+
         }
          return redirect()->route('notice.index');
     }

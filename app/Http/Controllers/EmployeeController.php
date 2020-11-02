@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use App\Models\Department;
+use App\Models\LogActivity;
 use File;
 
 class EmployeeController extends Controller
@@ -19,8 +20,8 @@ class EmployeeController extends Controller
     
     public function index()
     {
-     
-       $EmployeeDetail = Employee::all();
+    
+       $EmployeeDetail = Employee::paginate(10);
        //dd($EmployeeDetail);
        return view('admin.AdminEmployee.Employee')
        ->with('EmployeeDetail',$EmployeeDetail);
@@ -30,6 +31,7 @@ class EmployeeController extends Controller
     
     public function create()
     {
+       
         $departmentdata = Department::all();
 
 
@@ -73,7 +75,7 @@ class EmployeeController extends Controller
     
     public function store(Request $request)
     {
-        //dd($request->all());
+         //dd($request->all());
         $rules = $this->employee->getRules();
         $request->validate($rules);
 
@@ -181,9 +183,10 @@ class EmployeeController extends Controller
         $status = $this->employee->save();
         if($status){
             $request->session()->flash('success','Employee Detail added successfully');
+            \LogActivity::addToLog(' Employee detail stored.');
         }else{
              $request->session()->flash('error','Employee Detail not added ');
-
+             \LogActivity::addToLog(' tried to store Employee detail.');
         }
        
             return redirect()->route('Employee.index');
@@ -232,6 +235,7 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {  
+        
         $this->employee = $this->employee->find($id); 
         
         if (!$this->employee) {
@@ -341,8 +345,10 @@ class EmployeeController extends Controller
         $status = $this->employee->save();
         if($status){
             $request->session()->flash('success','EmployeeDetail updated successfully');
+            \LogActivity::addToLog(' Employee update activity performed .');
         }else{
              $request->session()->flash('error','EmployeeDetail not updated ');
+             \LogActivity::addToLog(' tried to update Employee detail.');
 
         }
         return redirect()->route('Employee.index'); 
@@ -393,8 +399,10 @@ class EmployeeController extends Controller
             } 
 
             request()->session()->flash('success','Employee Detail deleted successfully.');
+            \LogActivity::addToLog(' Employee delete.');
         }else{
              request()->session()->flash('error',' sorry !Employee Detail not deleted.');
+             \LogActivity::addToLog(' tried to delete Employee detail.');
         }
          return redirect()->route('Employee.index');
     }

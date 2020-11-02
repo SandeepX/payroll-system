@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Quote;
 use Illuminate\Http\Request;
+use App\Models\LogActivity;
+
 use Auth;
 
 class QuoteController extends Controller
@@ -19,7 +21,8 @@ class QuoteController extends Controller
      */
     public function index()
     {
-        $quote = Quote::all();
+        
+        $quote = Quote::paginate(10);
         return view('admin.Daily.manageQuotes')
         ->with('quote',$quote);
     }
@@ -31,6 +34,7 @@ class QuoteController extends Controller
      */
     public function create()
     {
+        
         return view('admin.Daily.Addquotes');
     }
 
@@ -53,8 +57,11 @@ class QuoteController extends Controller
         $status = $this->quote->save();
         if($status){
             $request->session()->flash('success','quote added successfully');
+            \LogActivity::addToLog('quotes added.');
         }else{
              $request->session()->flash('error','quote not added ');
+            \LogActivity::addToLog(' Tried to create quotes .');
+
 
         }
         return redirect()->route('quote.index');
@@ -85,6 +92,7 @@ class QuoteController extends Controller
             request()->session()->flash('error', 'quote with this id not found.');
             return redirect()->route('quote.index');
         }
+        
         return view('admin.Daily.Editquote')->
         with('editdata',$editdata);
     }
@@ -114,8 +122,10 @@ class QuoteController extends Controller
         $status = $this->quote->save();
         if($status){
             $request->session()->flash('success','Quote updated successfully');
+            \LogActivity::addToLog('quotes updated.');
         }else{
              $request->session()->flash('error','Quote not updated ');
+            \LogActivity::addToLog('Tried to Update Quote.');
 
         }
         return redirect()->route('quote.index');
@@ -139,8 +149,11 @@ class QuoteController extends Controller
         $success = $quote->delete($id);
         if($success){
             request()->session()->flash('success','quote deleted successfully.');
+            \LogActivity::addToLog('quote deleted.');
         }else{
              request()->session()->flash('error',' sorry !quote not deleted.');
+            \LogActivity::addToLog('Tried to delete Quote.');
+
         }
          return redirect()->route('quote.index');
     }

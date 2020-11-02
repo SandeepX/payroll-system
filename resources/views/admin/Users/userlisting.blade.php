@@ -90,9 +90,11 @@
                 </div>
 
             </div>
-        </div>
+      </div>
 
-    </div>
+
+      {{$user->links()}}
+  </div>
 
   
 </section>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\User; 
 use Illuminate\Http\Request;
+use App\Models\LogActivity;
+
 use Hash;
 use File;
 
@@ -19,7 +21,9 @@ class UserController extends Controller
      */
     public function index()
     {
-       $user = User::all(); 
+        
+
+       $user = User::paginate(10); 
          
         return view('admin.Users.userlisting')
             ->with('user',$user);
@@ -32,6 +36,8 @@ class UserController extends Controller
      */
     public function create()
     {
+        
+
         return view('admin.Users.Adduser');
     }
 
@@ -71,8 +77,12 @@ class UserController extends Controller
         $status = $this->user->save();
         if($status){
             $request->session()->flash('success','User added successfully');
+        \LogActivity::addToLog('user Added.');
+
         }else{
              $request->session()->flash('error','User not added');
+        \LogActivity::addToLog('Tried to create user .');
+
 
         }
         return redirect()->route('User.index');
@@ -179,8 +189,11 @@ class UserController extends Controller
         $status = $Updateuser->save();
         if($status){
             $request->session()->flash('success','User Detail updated successfully');
+        \LogActivity::addToLog('user detail updated.');
+
         }else{
              $request->session()->flash('error','User Detail not updated ');
+        \LogActivity::addToLog('Tried to  update user.');
 
         }
         return redirect()->route('User.index'); 
@@ -219,8 +232,12 @@ class UserController extends Controller
 
 
             request()->session()->flash('success','User deleted successfully.');
+        \LogActivity::addToLog('user deleted.');
+
         }else{
              request()->session()->flash('error',' sorry !User not deleted.');
+        \LogActivity::addToLog('Tried to  delete user.');
+
         }
         return redirect()->route('User.index');
     }

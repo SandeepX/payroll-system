@@ -13,6 +13,11 @@ Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 
+/************Activity log**************/
+
+//Route::get('add-to-log', 'HomeController@myTestAddToLog');
+
+
 Route::group(['middleware' => ['auth','admin','status']], function (){
 	
 	Route::get('/dashboard','HomeController@admin')->name('admin');
@@ -51,6 +56,13 @@ Route::group(['middleware' => ['auth','admin','status']], function (){
 		Route::resource('/notice', 'NoticeController');
 		Route::resource('/quote','QuoteController');
 
+	/**************leave Route**************/
+		Route::resource('/leave','LeaveController');
+
+	/*********Activity log**************/
+
+	Route::resource('/logActivity', 'ActivitylogController');
+	
 	
 
 

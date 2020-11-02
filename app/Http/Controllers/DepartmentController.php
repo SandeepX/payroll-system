@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Department;
 use App\Models\Employee;
+use App\Models\LogActivity;
 
 class DepartmentController extends Controller
 {
 	public function index(){
+		
 		$departmentdata = Department::all('id','department','designation');
 			//dd($departmentdata);
 		$employeecount = [];
@@ -27,11 +29,13 @@ class DepartmentController extends Controller
 	}  
 
 	public function show(){
+
 		return view('admin.Department.createdepartment');
 	}  
 
 
 	public function store(Request $request){
+		
 		// dd($request->all());
 		$this->validate($request,[
 			'department' =>'required|unique:departments,department'
@@ -60,6 +64,7 @@ class DepartmentController extends Controller
 		
 		if($status){
 			$request->session()->flash('success','department added successfully');
+			\LogActivity::addToLog('created deparment with designation.');
 			}else{
 				$request->session()->flash('error','opps! department not added');
 			}
@@ -85,7 +90,7 @@ class DepartmentController extends Controller
 	}
 
 	public function update(Request $request, $id){
-
+		
 		$data = Department::find($id);
 		if(!$data){
 			$request->session()->flash('error','department not found'); 
@@ -119,8 +124,10 @@ class DepartmentController extends Controller
 		
 		if($status){
 			$request->session()->flash('success','department updated successfully');
+			\LogActivity::addToLog('upadted  deparment .');
 			}else{
 				$request->session()->flash('error','opps! department not updated');
+				\LogActivity::addToLog('upadted deparment failed.');
 			}
 			
         return redirect()->route('department');
@@ -138,11 +145,13 @@ class DepartmentController extends Controller
 
 
 	public function destroy($id){
+		
 		$data = Department::find($id);
 		if($data){
           $success = $data->delete();
             if($success){
                 session()->flash('success','Department deleted successfully');
+                \LogActivity::addToLog('Deleted  deparment .');
             }else{
                 session()->flash('error','opps! something is wrong');
             }

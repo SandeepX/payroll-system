@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Holiday;
 use Illuminate\Http\Request;
+use App\Models\LogActivity;
 use Auth;
 
 class HolidayController extends Controller
@@ -19,7 +20,8 @@ class HolidayController extends Controller
      */
     public function index()
     {
-        $holidaydata = Holiday::all();
+        
+        $holidaydata = Holiday::paginate(10);
         return view('admin.Holiday.holidayview')
         ->with('holidaydata',$holidaydata);
     }
@@ -31,6 +33,7 @@ class HolidayController extends Controller
      */
     public function create()
     {
+        
         return view('admin.Holiday.Addholiday');
     }
 
@@ -42,8 +45,10 @@ class HolidayController extends Controller
      */
     public function store(Request $request)
     {
+
         $rules = $this->holiday->getRules();
         $request->validate($rules);
+        
 
         $data = $request->all();
         $data['added_by']=Auth::user()->id;
@@ -51,10 +56,13 @@ class HolidayController extends Controller
         $this->holiday->fill($data);
 
         $status = $this->holiday->save();
+
         if($status){
             $request->session()->flash('success','holiday added successfully');
+            \LogActivity::addToLog('holiday created.');
         }else{
              $request->session()->flash('error','holiday not added ');
+             \LogActivity::addToLog('tried to createa holiday.');
 
         }
         return redirect()->route('holiday.index');
@@ -85,6 +93,7 @@ class HolidayController extends Controller
             request()->session()->flash('error', 'holiday with this id not found.');
             return redirect()->route('holiday.index');
         }
+        
         return view('admin.Holiday.Editholiday')->
         with('editdata',$editdata);
 
@@ -115,9 +124,10 @@ class HolidayController extends Controller
         $status = $this->holiday->save();
         if($status){
             $request->session()->flash('success','Holiday updated successfully');
+            \LogActivity::addToLog('holiday updated .');
         }else{
              $request->session()->flash('error','Holiday not updated ');
-
+             \LogActivity::addToLog('tried to  update holiday.');
         }
         return redirect()->route('holiday.index');
     }
@@ -140,8 +150,10 @@ class HolidayController extends Controller
         $success = $holiday->delete($id);
         if($success){
             request()->session()->flash('success','holiday deleted successfully.');
+            \LogActivity::addToLog('holiday delete.');
         }else{
              request()->session()->flash('error',' sorry !holiday not deleted.');
+             \LogActivity::addToLog('tried to delete holiday .');
         }
          return redirect()->route('holiday.index');
     }

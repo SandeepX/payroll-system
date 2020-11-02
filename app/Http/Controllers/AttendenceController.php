@@ -61,19 +61,23 @@ class AttendenceController extends Controller
         
 
         //$Attendencedata = $request->all();
-        $Employeedetail = $request->Employeedetail;
+        $Employeedetail[] = $request->Employeedetail;
         //dd($Employeedetail);
-        foreach ($Employeedetail as $key => $value) {
-          $attendenceDetail = new Attendence();
-          
-          $attendenceDetail->date = $request->date;
-          $attendenceDetail->AttendenceBy = $request->AttendenceBy;
-
-          $attendenceDetail->Employeename = $value->Employeename;
-          dd($attendenceDetail->Employeename);
-
+        
+        foreach($Employeedetail as $key => $value){
+                $key=$key+1;
+                $attendenceDetail = new Attendence();
+                $attendenceDetail['date'] = $request['date'];
+                $attendenceDetail['AttendenceBy'] = $request['AttendenceBy']; 
+                $attendenceDetail['Employeename'] = $value['Employeename'][$key];
+                $attendenceDetail['intime'] = $value['intime'][$key];
+                $attendenceDetail['outtime'] = $value['outtime'][$key];
+                $attendenceDetail['status'] = $value['status'][$key];
+                $attendenceDetail->save();
         }
-
+        
+    
+          
     }
 
     /**

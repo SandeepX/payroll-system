@@ -59,7 +59,9 @@
                 
                   
             </div>
-        </div>
+      </div>
+
+      {{$quote->links()}}
 
     </div>
 

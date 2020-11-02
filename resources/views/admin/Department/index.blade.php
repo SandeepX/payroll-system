@@ -74,7 +74,10 @@
                 @endif
                    
                 </table>
+
                 <hr>
+
+                
                 <div class="ibox-head" style="padding-top: 10px;">
 
                     <a href="{{route('showform')}}" class="btn  btn-dark add_btn">

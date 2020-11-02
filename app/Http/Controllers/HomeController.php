@@ -35,4 +35,13 @@ class HomeController extends Controller
     {
         return view('employee.dashboard');
     }
-}
+
+
+    // public function myTestAddToLog()
+    // {
+    //     \LogActivity::addToLog('My Testing Add To Log.');
+    //     dd('log insert successfully.');
+    // }
+
+
+ }
