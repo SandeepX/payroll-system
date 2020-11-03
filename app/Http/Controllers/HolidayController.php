@@ -144,6 +144,7 @@ class HolidayController extends Controller
          //dd($this->holiday);
         if(!$holiday){
             request()->session()->flash('error', 'holiday not found.');
+            \LogActivity::addToLog('tried to delete holiday .');
             return redirect()->route('holiday.index');
         }
 

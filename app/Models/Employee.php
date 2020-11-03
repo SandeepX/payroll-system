@@ -87,6 +87,10 @@ class Employee extends Model
         return $this->belongsTo('App\Models\Department','department', 'id');
     }
 
+    // public function leave(){
+    //     return $this->hasMany('App\Models\Employeeleave');
+    // }
+
 
 
     

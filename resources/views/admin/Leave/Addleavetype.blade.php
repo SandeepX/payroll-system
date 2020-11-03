@@ -17,7 +17,7 @@
 				<hr> 
 				
 					<div class="border border-warning p-3" id="getEmployee">		
-						<h3>Leave Add Form</h3>
+						<h3>Leave Type Add Form</h3>
 						<hr class="bg-warning">
 						<form action="{{route('leave.store')}}" method="post"  >
 							{{csrf_field()}}

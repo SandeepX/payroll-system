@@ -1,8 +1,4 @@
 
-
-
-
-
 @extends('layout.admin')
 
 @section('title','Activity Log')
@@ -52,7 +48,7 @@
 										<tr>
 
 											<td>{{ date('d/m/y', strtotime($log->created_at))}}</td>
-											<td>{{ $log->subject }},By {{ $log->user_id }} On {{ date('d M Y h:i:s', strtotime($log->created_at))}} </td>
+											<td>{{ $log->subject }},By {{ ucfirst($log->user->name) }} On {{ date('d M Y h:i:s', strtotime($log->created_at))}} </td>
 											
 											
 											<td class="text-warning">{{ $log->ip }}</td>

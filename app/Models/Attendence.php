@@ -13,10 +13,10 @@ class Attendence extends Model
 
     public function getRules(){
         return [
-            'Employeename' => 'required|string',
-            'intime' => 'sometimes|string',
-            'outtime'=>'sometimes|string',
-            'status'=>'required|in:absent,present,Onleave',
+            // 'Employeename' => 'required|string',
+            // 'intime' => 'sometimes|string',
+            // 'outtime'=>'sometimes|string',
+            // 'status'=>'required|in:absent,present,Onleave',
             'date'=>'required|date',
             'AttendenceBy'=>'required|string',
             

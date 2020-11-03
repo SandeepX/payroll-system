@@ -58,6 +58,7 @@ Route::group(['middleware' => ['auth','admin','status']], function (){
 
 	/**************leave Route**************/
 		Route::resource('/leave','LeaveController');
+		Route::resource('/Employeeleave', 'EmployeeleaveController');
 
 	/*********Activity log**************/
 

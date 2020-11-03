@@ -61,33 +61,4 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
-@section('scripts')
-	<!-- <script>
-		$(document).ready(function(){
-			$("#getemployee").click(function(){
-				var departmentId = $('#departmentId').val();
-				var date = $('#date').val();
-				alert(departmentId);
-				$.ajax({
-					type: "post",
-					url: '/Attendence/Employeelist',
-					data:{
-					id:departmentid,
-					date:date,
-					_token:"{{ csrf_token() }}"
-					},
-
-					success: function(data){
-
-						//alert(data);
-					}
-				});
-
-			});
-		});
-	
-
-	</script> -->
-
-endsection
 

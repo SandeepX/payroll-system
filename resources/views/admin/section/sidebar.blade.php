@@ -103,12 +103,78 @@
                       </a>
                     </li>
 
-                    <li class="nav-item">
-                      <a href="{{('/Attendence')}}" class="nav-link">
-                        <i class="fa fa-columns nav-icon"></i>
-                        <p>Attendence</p>
+                   
+
+                    <li class="nav-item has-treeview">
+                      <a href="#" class="nav-link">
+                        <i class="nav-icon fa fa-columns"></i>
+                        <p>
+                          Attendence
+                          <i class="fas fa-angle-left right"></i>
+                        </p>
                       </a>
+
+                      <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                          <a href="{{('/Attendence')}}" class="nav-link">
+                            <i class=" nav-icon"></i>
+                              <p>Daily Attendence</p>
+                          </a>
+                        </li>
+
+                        <li class="nav-item">
+                          <a href="" class="nav-link">
+                            <i class=" nav-icon"></i>
+                              <p>Attendence Report</p>
+                          </a>
+                        </li>
+
+                        
+                        
+                      </ul>
                     </li>
+
+                    <li class="nav-item has-treeview">
+                      <a href="#" class="nav-link">
+                        <i class="nav-icon fa fa-bed"></i>
+                        <p>
+                          Leave
+                          <i class="fas fa-angle-left right"></i>
+                        </p>
+                      </a>
+
+                      <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                          <a href="{{route('Employeeleave.create')}}" class="nav-link">
+                            <i class=" nav-icon"></i>
+                              <p>Add Leave</p>
+                          </a>
+                        </li>
+
+                        <li class="nav-item">
+                          <a href="{{route('Employeeleave.index')}}" class="nav-link">
+                            <i class=" nav-icon"></i>
+                              <p>Manage Leave</p>
+                          </a>
+                        </li>
+
+                        <li class="nav-item">
+                          <a href="{{route('leave.create')}}" class="nav-link">
+                            <i class=" nav-icon"></i>
+                              <p>Add Leave Type</p>
+                          </a>
+                        </li>
+
+                        <li class="nav-item">
+                          <a href="{{route('leave.index')}}" class="nav-link">
+                            <i class=" nav-icon"></i>
+                              <p>Manage Leave Type</p>
+                          </a>
+                        </li>
+                        
+                      </ul>
+                    </li>
+                    
 
 
                     <li class="nav-item">
@@ -169,46 +235,6 @@
                     </li>
 
                     
-                    <li class="nav-item has-treeview">
-                      <a href="#" class="nav-link">
-                        <i class="nav-icon fa fa-bed"></i>
-                        <p>
-                          Leave
-                          <i class="fas fa-angle-left right"></i>
-                        </p>
-                      </a>
-
-                      <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                          <a href="" class="nav-link">
-                            <i class=" nav-icon"></i>
-                              <p>Add Leave</p>
-                          </a>
-                        </li>
-
-                        <li class="nav-item">
-                          <a href="" class="nav-link">
-                            <i class=" nav-icon"></i>
-                              <p>Manage Leave</p>
-                          </a>
-                        </li>
-
-                        <li class="nav-item">
-                          <a href="{{route('leave.create')}}" class="nav-link">
-                            <i class=" nav-icon"></i>
-                              <p>Add Leave Type</p>
-                          </a>
-                        </li>
-
-                        <li class="nav-item">
-                          <a href="{{route('leave.index')}}" class="nav-link">
-                            <i class=" nav-icon"></i>
-                              <p>Manage Leave Type</p>
-                          </a>
-                        </li>
-                        
-                      </ul>
-                    </li>
                     
                     
 
