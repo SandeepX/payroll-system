@@ -15,9 +15,9 @@
             <div class="col-lg-12">
 				
 				<hr> 
-				@if(!empty($Employeelist))
 				
-					<div class="border border-warning p-3" id="getEmployee">		
+				@if((count($Employeelist) > 0))
+					<div class="border border-warning p-3" >		
 						<h3>Attendance Form</h3>
 						<hr class="bg-warning">
 
@@ -60,7 +60,7 @@
 
 								<div class="col-3">
 									<label>Status:</label>
-									<select name="Employeedetail[status][]" class="form-control">
+									<select name="Employeedetail[status][]" class="form-control" required="">
 										<option value="">Select status</option>
 										<option value="absent">Absent</option>
 										<option value="present">present</option>
@@ -71,11 +71,14 @@
 							</div>
 							@endforeach
 
+							
+
 							<div class="d-flex justify-content-center my-3">
 								<div class="form-group">
 									<button class="btn btn-success">save</button>
 								</div>
 							</div>
+
 						</form>
 					</div>
                 @endif

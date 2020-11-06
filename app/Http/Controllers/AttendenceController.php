@@ -6,6 +6,7 @@ use App\Models\Attendence;
 use Illuminate\Http\Request;
 use App\Models\Department;
 use App\Models\Employee;
+use Illuminate\Support\Facades\Validator;
 
 
 class AttendenceController extends Controller
@@ -34,14 +35,23 @@ class AttendenceController extends Controller
         $datadate=$request->date;
        
         $Employeelist = Employee::where('department',$data)->where('status','active')->pluck('name','id');
-       
-        return view('admin.Attendence.Attendenceform')
+        if((count($Employeelist) > 0)){
+
+            return view('admin.Attendence.Attendenceform')
                 ->with('datadate',$datadate)
                 ->with('Employeelist',$Employeelist);
+        }else{
+            
+            request()->session()->flash('error','Department wihtout Employee');
+            return redirect()->back();
+
+        }
+        
+            
 
         
         
- }
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -56,37 +66,51 @@ class AttendenceController extends Controller
     
     public function store(Request $request)
     {
+        // $v = Validator::make($request->all(), [
+        // 'AttendenceBy'=>'required',
+        // 'date'=>'required|date',
+        // 'Employeedetail.Employeename.0' => 'required|string',
+        // 'Employeedetail.status.0' => 'required|in:present,absent,onleave',
+        // 'Employeedetail.intime.0' => 'required',
+
+        // ]);
+
         $rules = $this->attendence->getRules();
         $request->validate($rules);
         
 
+        //$valid_data = $request->Employeedetail['Employeename'];
+        //dd($request->all());
+
         
-        if (count($request->Employeedetail['Employeename'])>0) {
-            foreach($request->Employeedetail['Employeename'] as $key => $value)
-                $data[$value]=array(
-                    'AttendenceBy'=> $request->AttendenceBy,
-                    'date'=> $request->date,
-                    'Employeename'=>$request->Employeedetail['Employeename'][$key],
-                    'intime'=>$request->Employeedetail['intime'][$key],
-                    'outtime'=>$request->Employeedetail['outtime'][$key],
-                    'status'=>$request->Employeedetail['status'][$key],
-                );
 
-            $status = Attendence::insert($data);
-            
-            if($status){
-                request()->session()->flash('success','Attendence taken successfully.');
+            if (count($request->Employeedetail['Employeename'])>0) {
+                foreach($request->Employeedetail['Employeename'] as $key => $value)
+                    $data[$value]=array(
+                        'AttendenceBy'=> $request->AttendenceBy,
+                        'date'=> $request->date,
+                        'Employeename'=>$request->Employeedetail['Employeename'][$key],
+                        'intime'=>$request->Employeedetail['intime'][$key],
+                        'outtime'=>$request->Employeedetail['outtime'][$key],
+                        'status'=>$request->Employeedetail['status'][$key],
+                    );
 
-                \LogActivity::addToLog(' Attendence taken.');
+                $status = Attendence::insert($data);
                 
-            }else{
-                 request()->session()->flash('error',' Attendence process failed.');
-                \LogActivity::addToLog('Tried to take attendence');
+                if($status){
+                    request()->session()->flash('success','Attendence taken successfully.');
 
+                    \LogActivity::addToLog(' Attendence taken.');
+                    
+                }else{
+                     request()->session()->flash('error',' Attendence process failed.');
+                    \LogActivity::addToLog('Tried to take attendence');
+
+                }
+                 
             }
-             
-        }
-        return redirect()->route('Attendence.index');
+
+            return redirect()->route('Attendence.index');
         
 
         

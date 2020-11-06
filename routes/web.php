@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 Auth::routes();
@@ -63,6 +63,17 @@ Route::group(['middleware' => ['auth','admin','status']], function (){
 	/*********Activity log**************/
 
 	Route::resource('/logActivity', 'ActivitylogController');
+
+
+	/**************Settinng***************/
+	Route::get('/change-password', 'ChangePasswordController@index');
+	Route::post('/change-password', 'ChangePasswordController@store')->name('change.password');
+
+	Route::resource('/configuration','CompanydetailController');
+	
+	Route::resource('/sitelogo','SitelogoController');
+
+
 	
 	
 
