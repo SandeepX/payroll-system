@@ -83,13 +83,13 @@ class Employee extends Model
 
     }
 
-     public function getDepartment(){
+    public function getDepartment(){
         return $this->belongsTo('App\Models\Department','department', 'id');
     }
 
-    // public function leave(){
-    //     return $this->hasMany('App\Models\Employeeleave');
-    // }
+    public function payroll(){
+        return $this->hasMany('App\Models\Payroll');
+    }
 
 
 

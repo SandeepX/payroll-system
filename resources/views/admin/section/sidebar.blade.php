@@ -1,3 +1,6 @@
+
+
+
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -54,12 +57,12 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{asset('admin/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{asset('uploads/userAvatar/'.auth()->user()->avatar)}}" class="img-circle elevation-2" alt="User Image">
         </div>
 
       @if(auth()->user()->role=='admin')
         <div class="info">
-          <a href="{{url('/dashboard')}}" class="d-block">Welcome,<br> Adminastrator</br></a>
+          <a href="{{url('/dashboard')}}" class="d-block">Welcome,<br> Administrator</br></a>
         </div>
       @else
         <div class="info">
@@ -175,6 +178,36 @@
                       </ul>
                     </li>
                     
+                    <li class="nav-item has-treeview">
+                      <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-receipt"></i>
+                        <p>
+                          payroll 
+                          <i class="fas fa-angle-left right"></i>
+                        </p>
+                      </a>
+
+                      <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                          <a href="{{route('payroll.create')}}" class="nav-link">
+                            <i class=" nav-icon"></i>
+                              <p>Create payslip</p>
+                          </a>
+                        </li>
+
+                        <li class="nav-item">
+                          <a href="{{route('payroll.index')}}" class="nav-link">
+                            <i class=" nav-icon"></i>
+                              <p>Payslip list</p>
+                          </a>
+                        </li>
+
+                        
+                        
+                      </ul>
+                    </li>
+
+
 
 
                     <li class="nav-item">

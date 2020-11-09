@@ -131,12 +131,7 @@ class QuoteController extends Controller
         return redirect()->route('quote.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Quote  $quote
-     * @return \Illuminate\Http\Response
-     */
+   
     public function destroy($id)
     {
          $quote = Quote::find($id);

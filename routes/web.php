@@ -74,6 +74,12 @@ Route::group(['middleware' => ['auth','admin','status']], function (){
 	Route::resource('/sitelogo','SitelogoController');
 
 
+	/************payroll*************************/
+
+	Route::resource('/payroll','PayrollController');
+	Route::post('/payroll/Employee','PayrollController@getEmployee')->name('getEmployee');
+	
+
 	
 	
 
@@ -83,5 +89,9 @@ Route::group(['middleware' => ['auth','admin','status']], function (){
 Route::group(['prefix'=>'employee','middleware'=>['auth','status']],
 	function(){
 		Route::get('/','HomeController@employee')->name('employee');
+
+
+
+		
 		
 });

@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Employee;
+use App\Models\Department;
+use App\Models\Attendence;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -16,11 +20,7 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+    
     public function index()
     {
        return redirect()->route(auth()->user()->role);
@@ -28,7 +28,18 @@ class HomeController extends Controller
 
     public function admin()
     {
-        return view('admin.dashboard');
+        $countEmployee = count( Employee::where('status','active')->get());
+        $countDepartment = count(Department::all());
+        $countEmployeePresent = count(Attendence::where('status','present')->where('date',Carbon::today())->get() );
+        $countEmployeeAbsent = count( Attendence::where('status','absent')->where('date',carbon::today())->get() );
+        
+       
+        
+        return view('admin.dashboard')
+            ->with('countEmployee',$countEmployee)
+            ->with('countDepartment',$countDepartment)
+            ->with('countEmployeeAbsent', $countEmployeeAbsent)
+            ->with('countEmployeePresent', $countEmployeePresent);
     }
 
     public function employee()
@@ -37,11 +48,6 @@ class HomeController extends Controller
     }
 
 
-    // public function myTestAddToLog()
-    // {
-    //     \LogActivity::addToLog('My Testing Add To Log.');
-    //     dd('log insert successfully.');
-    // }
-
+   
 
  }

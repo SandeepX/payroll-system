@@ -12,12 +12,21 @@
                 </div>
             </div>
 
+           
+            
+
+            
             <div class="card">
                 <div class="card-header">{{ __('Staff Login') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
+                        <h3 style="margin-left: 220px;" >{{$companylogo[0]->title}}</h3>
+                        <div class="form-group row">
+                          <img src="{{asset('uploads/SiteLogo/'.$companylogo[0]->logo)}}" class="img-responsive" style="margin-left: 220px;" alt="">  
+                            
+                        </div>
 
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
