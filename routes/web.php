@@ -1,6 +1,8 @@
 <?php
 
+namespace App\Http\Controllers\Employee;
 use Illuminate\Support\Facades\Route;
+use Auth;
 
 
 
@@ -90,8 +92,28 @@ Route::group(['prefix'=>'employee','middleware'=>['auth','status']],
 	function(){
 		Route::get('/','HomeController@employee')->name('employee');
 
+		/***********Employee Setting**************/
+
+		Route::get('/change-password', [ChangePasswordController::class, 'index']);
+		Route::post('/change-password', [ChangePasswordController::class, 'store'])->name('employeechange.password');
 
 
-		
-		
+		/*************Employee Holiday*************/
+
+		Route::get('/holiday',[HolidayController::class, 'index']);
+
+		/*************** Employee Payroll ******************/ 
+
+		Route::get('/payroll',[PayrollController::class, 'index']);
+		Route::get('/payroll/show/{id}',[PayrollController::class, 'show'])->name('downloadPdf');
+
+		/*************** Employee Leave**********************/
+
+		Route::get('/leave/applyform',[ApplyleaveController::class,'create'])->name('applyleave');
+		Route::post('/leave/applyform',[ApplyleaveController::class,'store'])->name('leavestore');
+		Route::get('/leave',[ApplyleaveController::class,'index'])->name('Leavelist');
+
+
+
+
 });

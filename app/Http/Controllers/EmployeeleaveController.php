@@ -6,6 +6,7 @@ use App\Models\Employeeleave;
 use Illuminate\Http\Request;
 use App\Models\Employee;
 use App\Models\leave;
+use App\Models\LogActivity;
 
 class EmployeeleaveController extends Controller
 {

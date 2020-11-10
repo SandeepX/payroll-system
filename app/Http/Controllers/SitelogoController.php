@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Sitelogo;
 use Illuminate\Http\Request;
+use App\Models\Sitelogo;
+use App\Models\LogActivity;
 use Auth;
 use File;
 

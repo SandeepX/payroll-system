@@ -31,14 +31,7 @@
 					<input type="email"  class="form-control" placeholder="Email Address" required value="{{@$userdata->email}}"   name="email">
 				</div>
 
-				@if($userdata->id === (Auth::user()->id))
-					
-					<div class="form-group">
-					    <input type="password" name="password" class="form-control" placeholder=" change  Password">
-					</div>
-
-				@endif
-
+				
 
 				<div class="form-group">
 					<select name="role" class="form-control" required>

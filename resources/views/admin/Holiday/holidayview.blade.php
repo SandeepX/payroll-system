@@ -1,10 +1,10 @@
-@extends('layout.admin')
+@extends('layouts.employee')
 
 @section('title','Holiday')
 
 
 
-@section('main-content')
+@section('Employee-content')
 
 
 
@@ -76,7 +76,7 @@
             </div>
         </div>
 
-    </div>
+  </div>
 
   
 </section>

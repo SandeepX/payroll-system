@@ -1,10 +1,10 @@
 
-@extends('layout.admin')
+@extends('layouts.employee')
 
-@section('title','Add leave ')
+@section('title','Apply for leave')
 
 
-@section('main-content')
+@section('Employee-content')
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 
@@ -18,31 +18,19 @@
 					<div class="border border-warning p-3" >		
 						<h3>Leave Add Form</h3>
 						<hr class="bg-warning">
-						<form action="{{route('Employeeleave.store')}}" method="post">
+						<form action="{{route('leavestore')}}" method="post">
 							@csrf
 							<div class="row p-2">
 								<div class="col-sm-12 col-md-1"></div>
 								<div class="col-sm-12 col-md-6">
 
-									<div class="row">
-										<div class="col-sm-12 col-md-4 d-flex justify-content-end">
-											<label>Employee<span class="text-danger">*</span></label>
-										</div>
-										<div class="col-sm-12 col-md-8">
-											<select class="form-control" name="Employee_id" required="">
-												<option value="">Select Employee</option>
-											@if(isset($employeedata))
-												@foreach($employeedata as $key =>$value)
-												
-													<option value="{{$key}}">{{ $value}}</option>
-												
-												
-												@endforeach
+									
+										
+										<input type="hidden"  value="{{(auth()->user()->id)}}" name="Employee_id"  class="form-control">
+										<input type="hidden" readonly="" value="pending" name="status"  class="form-control">
+										
 
-											@endif	
-											</select>
-										</div>
-									</div>
+									
 
 									<div class="row mt-1">
 										<div class="col-sm-12 col-md-4 d-flex justify-content-end">
@@ -94,26 +82,14 @@
 
 
 
-									<div class="row mt-1">
-										<div class="col-sm-12 col-md-4 d-flex justify-content-end">
-											<label>Leave Status</span></label>
-										</div>
-										<div class="col-sm-12 col-md-8">
-											<select class="form-control" name="status" required="">
-												<option value="">Select</option>
-												<option value="pending">pending</option>
-												<option value="approved">Approved</option>
-												<option value="cancelled">cancelled</option>
-											</select>
-										</div>
-									</div>
+									
 				
 								</div>
 								<div class="col-sm-12 col-md-5"></div>
 							</div>
 							<hr class="bg-warning">
 							<div class="d-flex justify-content-center">
-								<button type="submit" class="btn btn-success">Save</button>
+								<button type="submit" class="btn btn-success">Apply</button>
 							</div>
 						</form>
 					</div> 

@@ -6,6 +6,7 @@ use App\Models\Payroll;
 use Illuminate\Http\Request;
 use App\Models\Department;
 use App\Models\Employee;
+use App\Models\LogActivity;
 use Auth;
 use PDF;
 
@@ -110,13 +111,7 @@ class PayrollController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Payroll  $payroll
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, Payroll $payroll)
     {
         //

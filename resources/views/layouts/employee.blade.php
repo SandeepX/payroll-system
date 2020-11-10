@@ -1,6 +1,6 @@
-@include('admin.section.header')
+@include('employee.section.header')
 
-  @include('admin.section.sidebar')
+  @include('employee.section.sidebar')
 
 
 
@@ -8,11 +8,11 @@
   <div class="content-wrapper">
 		<div class="row">
 		    <div class="col-12">
-		        @include('admin.section.notify')
+		        @include('employee.section.notify')
 		    </div>
 		</div>
 
     @yield('Employee-content')
     
   </div>
-@include('admin.section.footer')
+@include('employee.section.footer')

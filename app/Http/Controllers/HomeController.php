@@ -33,8 +33,6 @@ class HomeController extends Controller
         $countEmployeePresent = count(Attendence::where('status','present')->where('date',Carbon::today())->get() );
         $countEmployeeAbsent = count( Attendence::where('status','absent')->where('date',carbon::today())->get() );
         
-       
-        
         return view('admin.dashboard')
             ->with('countEmployee',$countEmployee)
             ->with('countDepartment',$countDepartment)
@@ -44,6 +42,8 @@ class HomeController extends Controller
 
     public function employee()
     {
+
+
         return view('employee.dashboard');
     }
 

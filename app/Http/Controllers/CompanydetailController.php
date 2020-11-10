@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Companydetail;
-
+use App\Models\LogActivity;
 use Illuminate\Http\Request;
 use Auth;
 use File;
