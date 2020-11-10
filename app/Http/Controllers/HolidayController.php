@@ -21,7 +21,7 @@ class HolidayController extends Controller
     public function index()
     {
         
-        $holidaydata = Holiday::paginate(10);
+        $holidaydata = Holiday::orderBy('created_at','desc')->paginate(10);
         return view('admin.Holiday.holidayview')
         ->with('holidaydata',$holidaydata);
     }

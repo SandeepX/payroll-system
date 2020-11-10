@@ -21,7 +21,7 @@ class EmployeeController extends Controller
     public function index()
     {
     
-       $EmployeeDetail = Employee::paginate(10);
+       $EmployeeDetail = Employee::orderBy('created_at','desc')->paginate(10);
        //dd($EmployeeDetail);
        return view('admin.AdminEmployee.Employee')
        ->with('EmployeeDetail',$EmployeeDetail);

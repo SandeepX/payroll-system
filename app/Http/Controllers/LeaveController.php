@@ -21,7 +21,7 @@ class LeaveController extends Controller
     public function index()
     {
        
-        $data = Leave::paginate(5);
+        $data = Leave::orderBy('created_at','desc')->paginate(5);
         return view('admin.Leave.viewleavetype')
         ->with('data',$data);
     }

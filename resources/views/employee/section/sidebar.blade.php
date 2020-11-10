@@ -79,45 +79,26 @@
                     <i class="fas fa-tachometer-alt"></i>
                     
                     <p>
-                     Dashboard 
                       <i class="fas fa-angle-left right"></i>
+                      </p>
+                     Dashboard 
+                      
                      
-                    </p>
+                    
                   </a>
                
                   <ul class="nav nav-treeview">
                     
 
                    
-
-                    <li class="nav-item has-treeview">
-                      <a href="#" class="nav-link">
-                        <i class="nav-icon fa fa-columns"></i>
-                        <p>
-                          Attendence
-                          <i class="fas fa-angle-left right"></i>
-                        </p>
+                    <li class="nav-item">
+                      <a href="" class="nav-link">
+                        <i class="fa fa-columns nav-icon"></i>
+                        <p>Attendence</p>
                       </a>
-
-                      <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                          <a href="{{('/Attendence')}}" class="nav-link">
-                            <i class=" nav-icon"></i>
-                              <p>Daily Attendence</p>
-                          </a>
-                        </li>
-
-                        <li class="nav-item">
-                          <a href="" class="nav-link">
-                            <i class=" nav-icon"></i>
-                              <p>Attendence Report</p>
-                          </a>
-                        </li>
-
-                        
-                        
-                      </ul>
                     </li>
+
+                   
 
                     <li class="nav-item has-treeview">
                       <a href="#" class="nav-link">

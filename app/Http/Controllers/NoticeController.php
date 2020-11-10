@@ -20,7 +20,7 @@ class NoticeController extends Controller
     public function index()
     {
         
-        $data = Notice::paginate(10);
+        $data = Notice::orderBy('created_at','desc')->paginate(10);
         return view('admin.Daily.managenotice')
         ->with('data',$data);
     }

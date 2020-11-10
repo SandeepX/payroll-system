@@ -21,7 +21,7 @@ class EmployeeleaveController extends Controller
      */
     public function index()
     {
-        $data = Employeeleave::paginate(10);
+        $data = Employeeleave::orderBy('created_at','desc')->paginate(10);
         //dd($data);
         return view('admin.Leave.manageleave')
             ->with('data', $data);

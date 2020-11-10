@@ -27,15 +27,15 @@ Route::group(['middleware' => ['auth','admin','status']], function (){
 	
 	/****************department************/
 
-	Route::prefix('/department')->group(function () {
-		Route::get('/', 'departmentController@index')->name('department');
-		Route::get('/show', 'departmentController@show')->name('showform');
-		Route::post('/department/store','departmentController@store')->name('createDepartment');
-		Route::delete('/department/destroy/{id}','departmentController@destroy')->name('departmentdelete');
-		Route::get('/edit/{id}','departmentController@edit')->name('departmentedit');
-		Route::put('/update/{id}','departmentController@update')->name('departmentUpdate');
+		Route::prefix('/department')->group(function () {
+			Route::get('/', 'departmentController@index')->name('department');
+			Route::get('/show', 'departmentController@show')->name('showform');
+			Route::post('/department/store','departmentController@store')->name('createDepartment');
+			Route::delete('/department/destroy/{id}','departmentController@destroy')->name('departmentdelete');
+			Route::get('/edit/{id}','departmentController@edit')->name('departmentedit');
+			Route::put('/update/{id}','departmentController@update')->name('departmentUpdate');
 
-	});
+		});
 
 	/**********************employee**********/
 		Route::resource('/Employee', 'EmployeeController');
@@ -64,25 +64,22 @@ Route::group(['middleware' => ['auth','admin','status']], function (){
 
 	/*********Activity log**************/
 
-	Route::resource('/logActivity', 'ActivitylogController');
+		Route::resource('/logActivity', 'ActivitylogController');
 
 
 	/**************Settinng***************/
-	Route::get('/change-password', 'ChangePasswordController@index');
-	Route::post('/change-password', 'ChangePasswordController@store')->name('change.password');
+		Route::get('/change-password', 'ChangePasswordController@index');
+		Route::post('/change-password', 'ChangePasswordController@store')->name('change.password');
 
-	Route::resource('/configuration','CompanydetailController');
+		Route::resource('/configuration','CompanydetailController');
 	
-	Route::resource('/sitelogo','SitelogoController');
+		Route::resource('/sitelogo','SitelogoController');
 
 
 	/************payroll*************************/
 
-	Route::resource('/payroll','PayrollController');
-	Route::post('/payroll/Employee','PayrollController@getEmployee')->name('getEmployee');
-	
-
-	
+		Route::resource('/payroll','PayrollController');
+		Route::post('/payroll/Employee','PayrollController@getEmployee')->name('getEmployee');
 	
 
 
@@ -112,6 +109,9 @@ Route::group(['prefix'=>'employee','middleware'=>['auth','status']],
 		Route::get('/leave/applyform',[ApplyleaveController::class,'create'])->name('applyleave');
 		Route::post('/leave/applyform',[ApplyleaveController::class,'store'])->name('leavestore');
 		Route::get('/leave',[ApplyleaveController::class,'index'])->name('Leavelist');
+
+		/*****************  Attendence ***********************/
+
 
 
 

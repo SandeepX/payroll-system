@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Employee;
 use App\Models\Department;
 use App\Models\Attendence;
+use App\Models\Notice;
+use App\Models\Quote;
+use App\Models\LogActivity;
 use Carbon\Carbon;
 
 class HomeController extends Controller
@@ -32,6 +35,7 @@ class HomeController extends Controller
         $countDepartment = count(Department::all());
         $countEmployeePresent = count(Attendence::where('status','present')->where('date',Carbon::today())->get() );
         $countEmployeeAbsent = count( Attendence::where('status','absent')->where('date',carbon::today())->get() );
+        $logActivity = LogActivity::latest('created_at')->take(20)->get();
         
         return view('admin.dashboard')
             ->with('countEmployee',$countEmployee)
@@ -43,8 +47,13 @@ class HomeController extends Controller
     public function employee()
     {
 
-
-        return view('employee.dashboard');
+        $notice = Notice::latest('created_at')->take(20)->get();
+        //dd($notice);
+        $quote = Quote::whereDay('created_at',now()->day)->get();
+        //dd($quote);
+        return view('employee.dashboard')
+        ->with('notice',$notice)
+        ->with('quote',$quote);
     }
 
 
