@@ -41,7 +41,8 @@ class HomeController extends Controller
             ->with('countEmployee',$countEmployee)
             ->with('countDepartment',$countDepartment)
             ->with('countEmployeeAbsent', $countEmployeeAbsent)
-            ->with('countEmployeePresent', $countEmployeePresent);
+            ->with('countEmployeePresent', $countEmployeePresent)
+            ->with('logActivity',$logActivity);
     }
 
     public function employee()

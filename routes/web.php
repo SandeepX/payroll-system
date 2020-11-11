@@ -10,14 +10,14 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-Auth::routes();
+// Auth::routes();
+/******** Register page is disabled********/
+Auth::routes(['register' => false]);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 
-/************Activity log**************/
 
-//Route::get('add-to-log', 'HomeController@myTestAddToLog');
 
 
 Route::group(['middleware' => ['auth','admin','status']], function (){

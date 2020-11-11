@@ -24,6 +24,7 @@
               <h4>Daily Attendance</h4>
               <hr class="bg-warning">
               <div class="col-md-6 col-sm-12 col-xs-12">
+                
                 <canvas id="canvas" width="200" height="200" style="background-color:#fff">
                 </canvas>
 

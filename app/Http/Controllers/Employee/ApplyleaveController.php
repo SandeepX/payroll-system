@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Employeeleave;
 use Illuminate\Http\Request;
 use App\Models\leave;
+use App\Models\Employee;
 use App\Models\LogActivity;
 use Auth;
 
@@ -34,9 +35,11 @@ class ApplyleaveController extends Controller
     {
        // dd('hello');
         $leavedata = Leave::pluck('leavetype','id');
+        $employeedata = Employee::where('status','active')->pluck('name','id');
         
         return view('employee.leave.Applyleave')
-            ->with('leavedata',$leavedata);
+            ->with('leavedata',$leavedata)
+            ->with('employeedata',$employeedata);
             
     }
 

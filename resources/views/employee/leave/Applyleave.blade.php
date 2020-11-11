@@ -24,9 +24,29 @@
 								<div class="col-sm-12 col-md-1"></div>
 								<div class="col-sm-12 col-md-6">
 
+									<div class="row">
+										<div class="col-sm-12 col-md-4 d-flex justify-content-end">
+											<label>Employee Name<span class="text-danger">*</span></label>
+										</div>
+										<div class="col-sm-12 col-md-8">
+											<select class="form-control" name="Employee_id" required="">
+												<option value="">Select your Name</option>
+											@if(isset($employeedata))
+												@foreach($employeedata as $key =>$value)
+												
+													<option value="{{$key}}">{{ $value}}</option>
+												
+												
+												@endforeach
+
+											@endif	
+											</select>
+										</div>
+									</div>
+
 									
 										
-										<input type="hidden"  value="{{(auth()->user()->id)}}" name="Employee_id"  class="form-control">
+										
 										<input type="hidden" readonly="" value="pending" name="status"  class="form-control">
 										
 
