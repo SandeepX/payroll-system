@@ -92,7 +92,7 @@
 
                    
                     <li class="nav-item">
-                      <a href="" class="nav-link">
+                      <a href="{{route('report')}}" class="nav-link">
                         <i class="fa fa-columns nav-icon"></i>
                         <p>Attendence</p>
                       </a>

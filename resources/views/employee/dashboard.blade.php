@@ -4,6 +4,84 @@
 
 @section('Employee-content')
 
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+
+    <script>
+      $(document).ready(function(){
+
+        $("#startworking").click(function(){
+
+          var startworking = confirm("Start Working time ?");
+          if(startworking == true)
+          {
+
+            var intime = new Date().toLocaleTimeString();
+            var date = new Date().toLocaleDateString();
+
+            $.ajax({
+              type: "post",
+              url: '{{route('intime')}}',
+              data:{
+                 intime:intime,
+                 date:date,
+                _token:"{{ csrf_token() }}"
+              },
+
+              success: function(data){
+                if((data.data)!=null)
+                {
+                 
+                    alert(data.data); 
+                }
+              }   
+
+            });
+
+          }
+
+
+        });
+
+
+        $("#stopworkingtime").click(function(){
+
+          var stopworking = confirm("Stop Working time ?");
+          if(stopworking == true)
+          {
+
+            var outtime = new Date().toLocaleTimeString();
+           
+           
+            var date = new Date().toLocaleDateString();
+            
+
+            $.ajax({
+              type: "PUT",
+              url: '{{route('outtime')}}',
+              data:{
+                 outime:outtime,
+                 date:date,
+                _token:"{{ csrf_token() }}"
+              },
+
+              success: function(data){
+                if((data.data)!=null)
+                {
+                 
+                    alert(data.data); 
+                }
+              }   
+
+            });
+
+          }
+
+
+        });
+
+      });
+    </script>    
+
 
 
   <section class="content">
@@ -23,18 +101,24 @@
             <div class="p-2">
               <h4>Daily Attendance</h4>
               <hr class="bg-warning">
+
               <div class="col-md-6 col-sm-12 col-xs-12">
-                
-                <canvas id="canvas" width="200" height="200" style="background-color:#fff">
-                </canvas>
+                  
+                  <canvas id="canvas" width="200" height="200" style="background-color:#fff">
+                  </canvas>
 
                 
               </div>
               
               <br><br>
 
-                
-              <input type="submit" name="" class="btn btn-success" value="Start Working Today">
+              <div class="col-sm-12">
+                <button class="btn btn-success col-sm-5 " id="startworking"  >Start working Today</button>
+               
+                <button class="btn btn-danger col-sm-5 " style="margin-left: 20px;" id="stopworkingtime">Stop working Today</button> 
+              </div>
+
+             
             </div>
           </div>
 
@@ -187,7 +271,8 @@
 
 
 
-  </section>
+</section>
+
 
 
 

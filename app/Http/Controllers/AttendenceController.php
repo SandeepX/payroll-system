@@ -27,6 +27,12 @@ class AttendenceController extends Controller
             ->with('alldepartments',$alldepartments);
     }
 
+    public function report()
+    {
+        
+        return view('admin.Attendence.report');
+    }
+
 
     public function getEmployee(Request $request)
     {

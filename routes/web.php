@@ -11,7 +11,7 @@ Route::get('/', function () {
 });
 
 // Auth::routes();
-/******** Register page is disabled********/
+/******** Auth with Register page  disabled********/
 Auth::routes(['register' => false]);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -48,6 +48,7 @@ Route::group(['middleware' => ['auth','admin','status']], function (){
 	/**************Attendence Route**************/
 
 		Route::resource('/Attendence','AttendenceController');
+		Route::get('/report','AttendenceController@report')->name('AdminReport');
 		Route::post('/Attendence/Employeelist','AttendenceController@getEmployee')->name('getEmployee');
 		Route::post('/Attendence/Employeelist/store','AttendenceController@store')->name('storeEmployee');
 
@@ -111,6 +112,10 @@ Route::group(['prefix'=>'employee','middleware'=>['auth','status']],
 		Route::get('/leave',[ApplyleaveController::class,'index'])->name('Leavelist');
 
 		/*****************  Attendence ***********************/
+
+		Route::get('/attendence',[AttendenceController::class,'index'])->name('report');
+		Route::post('/attendence',[AttendenceController::class,'intime'])->name('intime');
+		Route::put('/attendence/stop',[AttendenceController::class,'update'])->name('outtime');
 
 
 
