@@ -19,7 +19,7 @@
 					<div class="border border-warning p-3" id="getEmployee">		
 						<h3>Daily Attendance</h3>
 						<hr class="bg-warning">
-						<form action="{{route('getEmployee')}}" method="post"  >
+						<form action="{{route('AttendenceEmployee')}}" method="post"  >
 							{{csrf_field()}}
 							<div class="row p-3">
 								<div class="col-sm-12 col-md-4 p-2">

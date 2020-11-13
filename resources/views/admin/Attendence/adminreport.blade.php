@@ -1,18 +1,13 @@
-@extends('layouts.employee')
+@extends('layout.admin')
 
 
 
   @section('title','Attendence Report')
 
 
-
-
-
-@section('Employee-content')
+@section('main-content')
 
 <section class="content">
-
-	<h3>Your Attendence Report</h3>
 
 	<div>
 				<table class="table table-bordered table-striped col-lg-12" id="myTable" >
@@ -27,7 +22,7 @@
 					     @foreach ($empatts as $key => $empat)
 					      <th >{{ $key}} </th>
 					     @endforeach
-					   
+					   	
 					 </tr>
 
 					

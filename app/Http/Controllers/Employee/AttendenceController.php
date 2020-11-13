@@ -8,6 +8,7 @@ use App\Models\Attendence;
 use Illuminate\Http\Request;
 use App\Models\LogActivity;
 use Carbon\Carbon;
+use Validator;
 use Auth;
 
 class AttendenceController extends Controller
@@ -20,7 +21,37 @@ class AttendenceController extends Controller
     
     public function index()
     {
-        return view('employee.Attendence.report');
+        return view('employee.Attendence.form');
+    }
+
+    public function report(Request $request)
+    {
+        
+        $validator =  Validator::make($request->all(), [
+            'from' => 'date',
+            'to' => 'date|after_or_equal:from',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 422);
+        }
+
+        $empatts = Attendence::where(function ($query) use ($request) {
+
+        if (! empty($request->from))
+        {
+            $query->whereBetween('date', [$request->from, $request->to]);
+            $query->where('Employeename', Auth::user()->name);
+            
+        }
+
+        })->get()->groupBy('date');
+
+        //dd($empatts);
+
+        return view('employee.Attendence.report',compact('empatts'));
+
+
     }
 
 

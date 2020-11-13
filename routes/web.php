@@ -48,9 +48,11 @@ Route::group(['middleware' => ['auth','admin','status']], function (){
 	/**************Attendence Route**************/
 
 		Route::resource('/Attendence','AttendenceController');
-		Route::get('/report','AttendenceController@report')->name('AdminReport');
-		Route::post('/Attendence/Employeelist','AttendenceController@getEmployee')->name('getEmployee');
+		Route::get('/report','AttendenceController@reportform')->name('AdminReport');
+		Route::post('/Attendence/Employeelist','AttendenceController@getEmployee')->name('AttendenceEmployee');
 		Route::post('/Attendence/Employeelist/store','AttendenceController@store')->name('storeEmployee');
+
+		Route::post('/ReportingAttendence','AttendenceController@reportList')->name('Admingeneratereport');
 
 	/**************holidays Route**************/
 		Route::resource('/holiday' ,'HolidayController');
@@ -113,7 +115,9 @@ Route::group(['prefix'=>'employee','middleware'=>['auth','status']],
 
 		/*****************  Attendence ***********************/
 
-		Route::get('/attendence',[AttendenceController::class,'index'])->name('report');
+		Route::get('/attendence',[AttendenceController::class,'index'])->name('form');
+		Route::post('/AttendenceReport',[AttendenceController::class,'report'])->name('generatereport');
+
 		Route::post('/attendence',[AttendenceController::class,'intime'])->name('intime');
 		Route::put('/attendence/stop',[AttendenceController::class,'update'])->name('outtime');
 

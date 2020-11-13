@@ -27,10 +27,36 @@ class AttendenceController extends Controller
             ->with('alldepartments',$alldepartments);
     }
 
-    public function report()
+    public function reportform()
     {
         
-        return view('admin.Attendence.report');
+        return view('admin.Attendence.reportform');
+    }
+
+    public function reportList(Request $request)
+    {
+        $validator =  Validator::make($request->all(), [
+            'from' => 'date',
+            'to' => 'date|after_or_equal:from',
+        ]);
+
+        //dd('hello');
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 422);
+        }
+
+        $empatts = Attendence::where(function ($query) use ($request) {
+
+        if (! empty($request->from))
+        {
+            $query->whereBetween('date', [$request->from, $request->to]);
+        }
+
+        })->get()->groupBy('date');
+
+        //dd($empatts);
+
+        return view('admin.Attendence.adminreport',compact('empatts'));
     }
 
 
@@ -41,6 +67,7 @@ class AttendenceController extends Controller
         $datadate=$request->date;
        
         $Employeelist = Employee::where('department',$data)->where('status','active')->pluck('name','id');
+        //dd($Employeelist);
         if((count($Employeelist) > 0)){
 
             return view('admin.Attendence.Attendenceform')
